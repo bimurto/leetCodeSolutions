@@ -4,6 +4,9 @@ import com.bimurto.leetcodesolutions.common.ListNode;
 import org.junit.Assert;
 import org.junit.Test;
 
+import static com.bimurto.leetcodesolutions.CommonUtils.arrayToListNode;
+import static com.bimurto.leetcodesolutions.CommonUtils.validateListNoteWithArray;
+
 public class Problem1171RemoveZeroSumFromListTest {
 
     @Test
@@ -46,30 +49,5 @@ public class Problem1171RemoveZeroSumFromListTest {
         Assert.assertEquals(true, validateListNoteWithArray(resultListNode, result));
     }
 
-    private ListNode arrayToListNode(int[] array) {
-        ListNode result = new ListNode(array[0]);
-        ListNode start = result;
-        for (int i = 1; i < array.length; i++) {
-            start.next = new ListNode(array[i]);
-            start = start.next;
-        }
-        return result;
-    }
 
-    private boolean validateListNoteWithArray(ListNode listNode, int[] result) {
-        if(listNode == null && result.length ==0)
-            return true;
-
-        int index = 0;
-        while (listNode != null) {
-            if (listNode.val != result[index])
-                return false;
-            listNode = listNode.next;
-            index++;
-        }
-
-        if (index != result.length)
-            return false;
-        return true;
-    }
 }

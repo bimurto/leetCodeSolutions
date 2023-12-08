@@ -4,6 +4,8 @@ import com.bimurto.leetcodesolutions.common.TreeNode;
 import org.junit.Assert;
 import org.junit.Test;
 
+import static com.bimurto.leetcodesolutions.CommonUtils.prepareTreeNode;
+
 public class Problem958CompletenessOfBinaryTreeTest {
 
     @Test
@@ -36,31 +38,5 @@ public class Problem958CompletenessOfBinaryTreeTest {
         Assert.assertEquals(false, new Problem958CompletenessOfBinaryTree().isCompleteTree(treeNode));
     }
 
-    private TreeNode prepareTreeNode(Integer[] treeArray) {
-        TreeNode root = createTreeNode(treeArray, 0);;
-        prepareTreeNode(root, treeArray, 0);
-        return root;
-    }
 
-    private void prepareTreeNode(TreeNode root, Integer[] treeArray, int index) {
-
-        if (index >= treeArray.length)
-            return;
-        if(root == null)
-            return;
-
-        root.left = createTreeNode(treeArray,2 * index + 1);
-        root.right = createTreeNode(treeArray,2 * index + 2);
-
-        prepareTreeNode(root.left, treeArray, 2 * index + 1);
-        prepareTreeNode(root.right, treeArray, 2 * index + 2);
-    }
-
-    private TreeNode createTreeNode(Integer[] treeArray, int index) {
-        if(index >= treeArray.length)
-            return null;
-        if (treeArray[index] == null)
-            return null;
-        else return new TreeNode(treeArray[index]);
-    }
 }
